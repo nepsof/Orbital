@@ -1,0 +1,162 @@
+/* ============================================
+   LEFT SIDEBAR STYLES
+   Uses design tokens from brandkit.css
+   ============================================ */
+
+/* Sidebar Container */
+.explorer-sidebar {
+  background-color: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid var(--border-default);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  overflow-y: auto;
+  padding: var(--spacing-4) 0 var(--spacing-6) 0;
+  flex-shrink: 0;
+  width: 208px;
+  max-height: 100vh;
+}
+
+.sidebar-section {
+  padding: 0 var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.section-title {
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  padding-left: var(--spacing-2);
+  margin-bottom: var(--spacing-1);
+}
+
+/* Navigation tree & filters */
+.folder-list,
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-2);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+.tree-item:hover {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.tree-item.active {
+  background-color: var(--brand-primary-muted);
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-medium);
+  border-radius: 8px;
+}
+
+.tree-item .folder-icon {
+  color: var(--brand-primary);
+  font-size: var(--text-base);
+}
+
+.folder-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  transition: var(--transition-fast);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.filter-item:hover {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.filter-item.active {
+  background-color: var(--brand-primary-muted);
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-medium);
+  border-radius: 8px;
+}
+
+.empty-sidebar-msg {
+  padding: var(--spacing-3);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  text-align: center;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+/* Icon colors for filters */
+.icon-video,
+.icon-image,
+.icon-audio,
+.icon-danger,
+.icon-warning,
+.icon-folder {
+  font-size: var(--text-base);
+}
+
+.icon-danger { color: var(--brand-danger); }
+.icon-warning { color: var(--brand-accent); }
+.icon-video { color: var(--brand-purple); }
+.icon-image { color: var(--brand-secondary); }
+.icon-audio { color: var(--brand-pink); }
+
+/* Trash badge */
+.trash-badge {
+  margin-left: auto;
+  background-color: var(--brand-danger);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  line-height: 1.5;
+}
+
+/* Sidebar scrollbar styling */
+.explorer-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explorer-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.explorer-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+
+.explorer-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--border-default);
+}

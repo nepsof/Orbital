@@ -1,0 +1,131 @@
+/* Login form panel — used inside .form-box.login */
+
+.form-box.login .input-box {
+  position: relative;
+  margin: 30px 0;
+}
+
+.form-box.login .input-box input {
+  width: 100%;
+  padding: 13px 50px 13px 20px;
+  background: #eee;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-box.login .input-box input::placeholder {
+  color: #888;
+  font-weight: 400;
+}
+
+.form-box.login .input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.form-box.login .password-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.form-box.login .password-toggle:hover {
+  color: #7494ec;
+}
+
+.form-box.login .forgot-remember-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -15px 0 15px;
+}
+
+.form-box.login .forgot-link {
+  margin: 0;
+}
+
+.form-box.login .forgot-link a {
+  font-size: 14.5px;
+  color: #333;
+}
+
+.form-box.login .remember-me {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.form-box.login .remember-me label {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-box.login .remember-me input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #7494ec;
+}
+
+/* Guest session styles */
+
+.form-box.login .divider {
+  position: relative;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+}
+
+.form-box.login .divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.form-box.login .divider span {
+  position: relative;
+  background: #fff;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+.form-box.login .btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.form-box.login .btn-secondary:hover:not(:disabled) {
+  background: #e0e0e0;
+  border-color: #7494ec;
+  color: #7494ec;
+}
+
+.form-box.login .btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+

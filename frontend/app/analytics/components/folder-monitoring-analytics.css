@@ -1,0 +1,81 @@
+.monitoringSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.monitoringHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-2xs);
+  color: var(--brand-secondary);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-secondary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(16, 185, 129, 0);
+  }
+}
+
+.monitoringGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+}
+
+.monitoringStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+
+.monitoredCard {
+  padding: var(--spacing-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.monitoredLabel {
+  font-size: var(--text-2xs);
+  color: var(--text-tertiary);
+}
+
+.monitoredValue {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .monitoringGrid {
+    grid-template-columns: 1fr;
+  }
+}

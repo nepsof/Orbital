@@ -1,0 +1,75 @@
+.productivitySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.productivityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.miniStat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  padding: var(--spacing-3);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.miniLabel {
+  font-size: var(--text-2xs);
+  color: var(--text-tertiary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.miniValue {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.activeFoldersList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.folderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.folderItem:hover {
+  border-color: var(--brand-primary-muted);
+  background: var(--brand-primary-light);
+}
+
+.folderInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.folderName {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.folderActivity {
+  font-size: var(--text-2xs);
+  color: var(--brand-secondary);
+  font-weight: var(--font-weight-semibold);
+}

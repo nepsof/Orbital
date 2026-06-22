@@ -1,0 +1,15 @@
+{
+  "name": "orbital",
+  "version": "1.0.0",
+  "description": "Orbital - System-wide Spotlight Search",
+  "main": "electron/main.js",
+  "scripts": {
+    "electron:start": "electron .",
+    "electron:dev": "NODE_ENV=development electron ."
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  },
+  "author": "Orbital Team",
+  "license": "ISC"
+}

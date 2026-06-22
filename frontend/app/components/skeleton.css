@@ -1,0 +1,656 @@
+/* skeleton.css - Glassmorphism Skeleton Loading Styles */
+
+/* ===== Component Specific Variables ===== */
+:root {
+  --skeleton-base: rgba(0, 0, 0, 0.05);
+  --skeleton-highlight: rgba(0, 0, 0, 0.1);
+  --skeleton-glass-bg: var(--glass-bg);
+  --skeleton-glass-border: var(--glass-border);
+}
+
+.dark {
+  --skeleton-base: rgba(255, 255, 255, 0.05);
+  --skeleton-highlight: rgba(255, 255, 255, 0.1);
+  --skeleton-glass-bg: var(--glass-bg);
+  --skeleton-glass-border: var(--glass-border);
+}
+
+/* ===== Base Skeleton ===== */
+.skeleton {
+  background: var(--skeleton-base);
+  border-radius: var(--radius-md, 0.75rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer Animation */
+.skeleton.shimmer {
+  background: linear-gradient(
+    110deg,
+    var(--skeleton-base) 8%,
+    var(--skeleton-highlight) 18%,
+    var(--skeleton-base) 33%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Pulse Animation */
+.skeleton.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ===== Text Skeleton ===== */
+.skeleton-text {
+  background: var(--skeleton-base);
+  border-radius: 4px;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* ===== Avatar Skeleton ===== */
+.skeleton-avatar {
+  background: var(--skeleton-base);
+  border-radius: 50%;
+}
+
+/* ===== Progress Bar Skeleton ===== */
+.skeleton-progress-bar {
+  height: 6px;
+  background: var(--skeleton-base);
+  border-radius: 3px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* ===== Card Skeletons ===== */
+.skeleton-card {
+  background: var(--skeleton-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--skeleton-glass-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Stats Card */
+.skeleton-card.stats-card .skeleton-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Folder Card */
+.skeleton-folder-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.skeleton-folder-info {
+  flex: 1;
+}
+
+.skeleton-folder-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.skeleton-fstat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skeleton-folder-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.skeleton-action-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skeleton-icon-btn {
+  width: 32px;
+  height: 32px;
+  background: var(--skeleton-base);
+  border-radius: var(--radius-sm, 0.5rem);
+}
+
+/* Switch Skeleton */
+.skeleton-switch {
+  width: 44px;
+  height: 24px;
+  background: var(--skeleton-base);
+  border-radius: 34px;
+  position: relative;
+}
+
+.skeleton-switch::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Category Card */
+.skeleton-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Rule Card */
+.skeleton-rule-content {
+  flex: 1;
+}
+
+.skeleton-card.rule-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== Chart Skeletons ===== */
+.skeleton-chart {
+  background: var(--skeleton-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--skeleton-glass-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.skeleton-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skeleton-chart-options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skeleton-chart-option {
+  width: 60px;
+  height: 28px;
+  background: var(--skeleton-base);
+  border-radius: var(--radius-sm, 0.5rem);
+}
+
+.skeleton-chart-body {
+  min-height: 250px;
+  position: relative;
+}
+
+/* Bar Chart */
+.skeleton-axis {
+  display: flex;
+  gap: 1rem;
+  height: 200px;
+}
+
+.skeleton-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40px;
+}
+
+.skeleton-bars-container {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+.skeleton-bar {
+  flex: 1;
+  background: var(--skeleton-base);
+  border-radius: 4px 4px 0 0;
+  min-width: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton-x-axis {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-default);
+}
+
+/* Pie Chart */
+.skeleton-pie-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.skeleton-pie {
+  width: 180px;
+  height: 180px;
+  background: conic-gradient(
+    var(--skeleton-base) 0deg 60deg,
+    var(--skeleton-highlight) 60deg 120deg,
+    var(--skeleton-base) 120deg 180deg,
+    var(--skeleton-highlight) 180deg 240deg,
+    var(--skeleton-base) 240deg 300deg,
+    var(--skeleton-highlight) 300deg 360deg
+  );
+  border-radius: 50%;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skeleton-legend-color {
+  width: 12px;
+  height: 12px;
+  background: var(--skeleton-base);
+  border-radius: 2px;
+}
+
+/* ===== Stats Grid ===== */
+.skeleton-stats-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== Dashboard Specific ===== */
+.skeleton-dashboard {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.skeleton-welcome-header {
+  background: var(--skeleton-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--skeleton-glass-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skeleton-summary {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.skeleton-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skeleton-charts-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skeleton-two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skeleton-quick-actions,
+.skeleton-activity {
+  background: var(--skeleton-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--skeleton-glass-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+}
+
+.skeleton-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skeleton-action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md, 0.75rem);
+}
+
+/* ===== Timeline Skeleton ===== */
+.skeleton-timeline {
+  position: relative;
+  padding-left: 24px;
+  margin-top: 1rem;
+}
+
+.skeleton-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-default);
+}
+
+.skeleton-timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.skeleton-timeline-dot {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--skeleton-base);
+  box-shadow: 0 0 0 2px var(--brand-primary-muted);
+}
+
+.skeleton-timeline-content {
+  flex: 1;
+}
+
+.skeleton-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ===== Folder Monitoring Specific ===== */
+.skeleton-folder-monitoring {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.skeleton-overview-card {
+  background: var(--skeleton-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--skeleton-glass-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skeleton-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.skeleton-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.skeleton-stat-item {
+  text-align: center;
+}
+
+/* ===== Settings Page Specific ===== */
+.skeleton-settings {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.skeleton-settings-header {
+  margin-bottom: 2rem;
+}
+
+.skeleton-settings-tabs {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.skeleton-tab-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 200px;
+}
+
+.skeleton-tab-content {
+  flex: 1;
+  background: var(--skeleton-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--skeleton-glass-border);
+  border-radius: var(--radius-lg, 1rem);
+  padding: 1.5rem;
+}
+
+.skeleton-setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+/* ===== Search Page Specific ===== */
+.skeleton-search {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.skeleton-priority-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-md, 0.75rem);
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-drive-card {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-md, 0.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skeleton-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .skeleton-charts-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-settings-tabs {
+    flex-direction: column;
+  }
+  
+  .skeleton-tab-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .skeleton-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  
+  .skeleton-folder-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeleton-pie-container {
+    flex-direction: column;
+  }
+  
+  .skeleton-summary {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .skeleton-summary-item {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-card {
+    padding: 1rem;
+  }
+  
+  .skeleton-chart {
+    padding: 1rem;
+  }
+  
+  .skeleton-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .skeleton,
+  .skeleton * {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+/* ===== Custom Skeleton Shapes ===== */
+.skeleton-circle {
+  border-radius: 50%;
+}
+
+.skeleton-rect {
+  border-radius: 0;
+}
+
+.skeleton-rounded {
+  border-radius: 1rem;
+}
+
+/* ===== Loading Container Overlay ===== */
+.skeleton-overlay {
+  position: relative;
+  min-height: 200px;
+}
+
+.skeleton-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}

@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# env
+.env
+.env.local
+.env.development.local
+.env.production.local
+
+# Next.js
+frontend/.next
+frontend/out
+
+# Node
+frontend/node_modules
+server/node_modules
+node_modules
+
+# build
+dist
+build
+
+# coverage
+coverage
+
+# IDE
+.vscode
+.idea
+
+# misc
+*.pemfrontend/tsconfig.tsbuildinfo

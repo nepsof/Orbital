@@ -1,0 +1,70 @@
+.storageSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--spacing-6);
+}
+
+.chartContainer {
+  height: 300px;
+  width: 100%;
+  margin-top: var(--spacing-4);
+}
+
+.storageStats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.storageStatItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.statInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.statName {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.statValue {
+  color: var(--text-secondary);
+}
+
+.progressBar {
+  height: 8px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+
+.chartTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-2);
+}
+
+@media (max-width: 1024px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}

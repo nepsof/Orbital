@@ -1,0 +1,50 @@
+/* OTP verification modal */
+
+.otp-root .modal-content.otp-modal {
+  max-width: 400px;
+}
+
+.otp-instruction {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+  border-color: #7494ec;
+  box-shadow: 0 0 0 3px rgba(116, 148, 236, 0.1);
+}
+
+.otp-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.otp-root .btn-secondary {
+  background: #6c757d;
+}
+
+.otp-root .btn-secondary:hover {
+  background: #5a6268;
+}

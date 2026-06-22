@@ -1,0 +1,131 @@
+/* Registration form + terms modal content */
+
+.form-box.register .input-box {
+  position: relative;
+  margin: 30px 0;
+}
+
+.form-box.register .input-box input {
+  width: 100%;
+  padding: 13px 50px 13px 20px;
+  background: #eee;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-box.register .input-box input::placeholder {
+  color: #888;
+  font-weight: 400;
+}
+
+.form-box.register .input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.form-box.register .password-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.form-box.register .password-toggle:hover {
+  color: #7494ec;
+}
+
+.form-box.register .terms-checkbox {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.form-box.register .terms-checkbox label {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-box.register .terms-checkbox input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #7494ec;
+}
+
+.signup-terms-link {
+  color: #7494ec;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.signup-terms-link:hover {
+  color: #5a7acc;
+}
+
+.signup-field-error {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+/* Terms modal body content */
+.signup-terms-content {
+  line-height: 1.6;
+  color: #333;
+}
+
+.signup-terms-content h1 {
+  font-size: 40px;
+  margin: 20px 0 15px 0;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.signup-terms-content h2 {
+  font-size: 30px;
+  margin: 15px 0 10px 0;
+  color: #34495e;
+  font-weight: 600;
+}
+
+.signup-terms-content p {
+  margin: 10px 0;
+  color: #555;
+  font-size: 20px;
+}
+
+.signup-terms-content li {
+  margin: 5px 0;
+  color: #555;
+  font-size: 20px;
+}
+
+.signup-terms-divider {
+  border: none;
+  border-top: 2px solid #e9ecef;
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .signup-terms-content h1 {
+    font-size: 24px;
+  }
+
+  .signup-terms-content h2 {
+    font-size: 20px;
+  }
+}

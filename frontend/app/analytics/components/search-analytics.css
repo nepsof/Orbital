@@ -1,0 +1,65 @@
+.searchAnalyticsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.searchGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+}
+
+.searchRanking {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.rankingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.rankingInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.rankingPos {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-tertiary);
+  width: 20px;
+}
+
+.rankingName {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.rankingCount {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.searchCategoryTag {
+  font-size: var(--text-2xs);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .searchGrid {
+    grid-template-columns: 1fr;
+  }
+}

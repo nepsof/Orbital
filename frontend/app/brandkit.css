@@ -1,0 +1,328 @@
+/* ---------- Modern Design System 2024 (Glass + Dark Mode Ready) ---------- */
+
+/* ===== Light Theme (Default) ===== */
+:root {
+  /* ---- Brand Colors - Apple macOS System Palette ---- */
+  --brand-primary: #007aff;           /* Apple Blue */
+  --brand-primary-hover: #0066d6;     /* Apple Blue Dark */
+  --brand-primary-active: #0052b3;    /* Apple Blue Darker */
+  --brand-primary-muted: rgba(0, 122, 255, 0.12);
+  --brand-primary-light: rgba(0, 122, 255, 0.05);
+
+  --brand-secondary: #34c759;         /* Apple Green */
+  --brand-secondary-hover: #28a745;
+  --brand-secondary-active: #1e8e3e;
+  --brand-secondary-muted: rgba(52, 199, 89, 0.12);
+
+  --brand-accent: #ff9500;            /* Apple Orange */
+  --brand-accent-hover: #e68a00;
+  --brand-accent-muted: rgba(255, 149, 0, 0.12);
+
+  --brand-danger: #ff3b30;            /* Apple Red */
+  --brand-danger-hover: #d62d20;
+  --brand-danger-muted: rgba(255, 59, 48, 0.12);
+
+  --brand-success: #34c759;           /* Apple Green */
+  --brand-success-hover: #28a745;
+  --brand-success-muted: rgba(52, 199, 89, 0.12);
+
+  --brand-purple: #af52de;            /* Apple Purple */
+  --brand-purple-muted: rgba(175, 82, 222, 0.12);
+  
+  --brand-pink: #ff2d55;              /* Apple Pink */
+  --brand-pink-muted: rgba(255, 45, 85, 0.12);
+
+  /* ---- Neutral / Surface Colors ---- */
+  --bg-base: #f5f5f7;
+  --bg-gradient: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+  --bg-surface: rgba(255, 255, 255, 0.6);
+  --bg-elevated: rgba(255, 255, 255, 0.8);
+  --bg-solid: #ffffff;
+  --bg-subtle: rgba(232, 232, 237, 0.4);
+  --bg-overlay: rgba(0, 0, 0, 0.15);
+  
+  /* Glassmorphism backgrounds (macOS Vibrant Glass) */
+  --bg-glass: rgba(255, 255, 255, 0.6);
+  --bg-glass-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.06);
+
+  --border-default: rgba(210, 210, 215, 0.5);
+  --border-strong: rgba(199, 199, 204, 0.6);
+  --border-subtle: rgba(229, 229, 234, 0.3);
+
+  /* ---- Text Colors (macOS Light Mode) ---- */
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #aeaeb2;
+  --text-muted: #8e8e93;
+  --text-inverse: #ffffff;
+
+  /* ---- Modern Shadows - Layered Depth (Light) ---- */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --shadow-floating: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
+  
+  /* Glow effects (Light) */
+  --glow-primary: 0 0 20px rgba(0, 122, 255, 0.3);
+  --glow-success: 0 0 20px rgba(52, 199, 89, 0.3);
+  --glow-danger: 0 0 20px rgba(255, 59, 48, 0.3);
+
+  /* ---- Modern Radius Scale ---- */
+  --radius-none: 0px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ---- Modern Typography Scale ---- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', Monaco, monospace;
+  --font-display: 'Inter', -apple-system, sans-serif;
+
+  /* Fluid type scale */
+  --text-2xs: 0.625rem;   /* 10px */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  
+  /* Line heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Letter spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ---- Modern Spacing Scale ---- */
+  --spacing-px: 1px;
+  --spacing-0: 0;
+  --spacing-0\.5: 0.125rem;  /* 2px */
+  --spacing-1: 0.25rem;      /* 4px */
+  --spacing-2: 0.5rem;       /* 8px */
+  --spacing-3: 0.75rem;      /* 12px */
+  --spacing-4: 1rem;         /* 16px */
+  --spacing-5: 1.25rem;      /* 20px */
+  --spacing-6: 1.5rem;       /* 24px */
+  --spacing-7: 1.75rem;      /* 28px */
+  --spacing-8: 2rem;         /* 32px */
+  --spacing-9: 2.25rem;      /* 36px */
+  --spacing-10: 2.5rem;      /* 40px */
+  --spacing-11: 2.75rem;     /* 44px */
+  --spacing-12: 3rem;        /* 48px */
+  --spacing-14: 3.5rem;      /* 56px */
+  --spacing-16: 4rem;        /* 64px */
+  --spacing-20: 5rem;        /* 80px */
+  --spacing-24: 6rem;        /* 96px */
+
+  /* ---- Modern Transitions ---- */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  --transition-fast: 150ms var(--ease-in-out);
+  --transition-base: 250ms var(--ease-in-out);
+  --transition-slow: 350ms var(--ease-in-out);
+  --transition-slower: 500ms var(--ease-in-out);
+  
+  /* Transform durations */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+
+  /* ---- Z-index scale ---- */
+  --z-hide: -1;
+  --z-base: 0;
+  --z-docked: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-banner: 250;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+}
+
+/* ===== Dark Mode (explicit .dark class) ===== */
+.dark {
+  --bg-base: #1c1c1e;
+  --bg-gradient: linear-gradient(180deg, #1c1c1e 0%, #2c2c2e 100%);
+  --bg-surface: rgba(44, 44, 46, 0.6);
+  --bg-elevated: rgba(58, 58, 60, 0.8);
+  --bg-solid: #2c2c2e;
+  --bg-subtle: rgba(44, 44, 46, 0.6);
+  --bg-overlay: rgba(0, 0, 0, 0.35);
+  
+  /* Glass backgrounds for dark mode (macOS Vibrant Glass) */
+  --bg-glass: rgba(44, 44, 46, 0.6);
+  --bg-glass-strong: rgba(44, 44, 46, 0.8);
+  --glass-bg: rgba(44, 44, 46, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.06);
+
+  --border-default: rgba(72, 72, 74, 0.5);
+  --border-strong: rgba(99, 99, 102, 0.6);
+  --border-subtle: rgba(58, 58, 60, 0.3);
+
+  --text-primary: #f5f5f7;
+  --text-secondary: #aeaeb2;
+  --text-tertiary: #8e8e93;
+  --text-muted: #636366;
+  --text-inverse: #1c1c1e;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  --shadow-floating: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  
+  --glow-primary: 0 0 20px rgba(0, 122, 255, 0.5);
+  --glow-success: 0 0 20px rgba(52, 199, 89, 0.5);
+  --glow-danger: 0 0 20px rgba(255, 59, 48, 0.5);
+}
+
+/* ===== System Preference Dark Mode (if no explicit .light class) ===== */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg-base: #1c1c1e;
+    --bg-gradient: linear-gradient(180deg, #1c1c1e 0%, #2c2c2e 100%);
+    --bg-surface: rgba(44, 44, 46, 0.6);
+    --bg-elevated: rgba(58, 58, 60, 0.8);
+    --bg-solid: #2c2c2e;
+    --bg-subtle: rgba(44, 44, 46, 0.6);
+    --bg-glass: rgba(44, 44, 46, 0.6);
+    --bg-glass-strong: rgba(44, 44, 46, 0.8);
+    --glass-bg: rgba(44, 44, 46, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --border-default: rgba(72, 72, 74, 0.5);
+    --border-strong: rgba(99, 99, 102, 0.6);
+    --text-primary: #f5f5f7;
+    --text-secondary: #aeaeb2;
+    --text-tertiary: #8e8e93;
+    --text-muted: #636366;
+    --text-inverse: #1c1c1e;
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    --shadow-floating: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+    --glow-primary: 0 0 20px rgba(0, 122, 255, 0.5);
+    --glow-success: 0 0 20px rgba(52, 199, 89, 0.5);
+    --glow-danger: 0 0 20px rgba(255, 59, 48, 0.5);
+  }
+}
+
+/* ===== Global Reset & Base Styles ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background: var(--bg-gradient);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+body {
+  background: transparent;
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+}
+
+p, span, li {
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--brand-primary-hover);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* ---- Surface Utilities (Cards, Panels) ---- */
+.surface-raised {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.surface-floating {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-floating);
+}
+
+/* Glass card (used in dashboard) – kept for consistency */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-base);
+}
+.glass-card:hover {
+  border-color: var(--brand-primary-muted);
+  box-shadow: var(--shadow-lg);
+}

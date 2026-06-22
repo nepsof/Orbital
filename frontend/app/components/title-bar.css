@@ -1,0 +1,52 @@
+/* ============================================
+   CUSTOM TITLE BAR — always shown, drags window in Electron
+   ============================================ */
+
+.electron-titlebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.electron-titlebar.draggable {
+  -webkit-app-region: drag;
+}
+
+.electron-titlebar.with-traffic-lights {
+  padding: 0 16px 0 76px;
+}
+
+.electron-titlebar-left,
+.electron-titlebar-right {
+  pointer-events: auto;
+  font-size: 13px;
+  color: var(--text-secondary, #6e6e73);
+}
+
+.electron-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.electron-titlebar-path {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50vw;
+}
+
+.electron-titlebar-right {
+  font-size: 12px;
+  text-align: right;
+  flex-shrink: 0;
+}

@@ -1,0 +1,123 @@
+/* ============================================
+   HOME PAGE LAYOUT – Sticky Top Bar + Independent Scrolling
+   ============================================ */
+
+/* ---------- Global Reset for Full Height ---------- */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-base);
+}
+
+/* ---------- Page Shell (Flex Column) ---------- */
+.page-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-base);
+}
+
+/* ---------- File Explorer Container (Grid: Sidebar + Main) ---------- */
+.file-explorer-container {
+  display: grid;
+  grid-template-columns: 208px 1fr;
+  flex: 1;                 /* takes remaining height after TopBar */
+  min-height: 0;           /* allows grid children to scroll */
+  background-color: var(--bg-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Left Sidebar (Independent Scroll) ---------- */
+/* The sidebar component itself will have overflow-y: auto */
+/* We rely on the class from left-sidebar.css, but ensure container limits */
+.left-sidebar {
+  overflow-y: auto;
+  height: 100%;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-default);
+}
+
+/* Custom scrollbar for sidebar */
+.left-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.left-sidebar::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+.left-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+}
+.left-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ---------- Main Content Area (Independent Scroll) ---------- */
+.explorer-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg-surface);
+  height: 100%;
+}
+
+/* The main content component (MainContent) will handle its own scrolling */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* Custom scrollbar for main content */
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+.main-content::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+.main-content::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+}
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ---------- Top Bar Styling (Sticky within page-shell) ---------- */
+/* The top-bar component already has position: sticky; top: 0; */
+/* We just need to ensure it doesn't shrink */
+.explorer-topbar {
+  flex-shrink: 0;
+  z-index: var(--z-sticky);
+}
+
+/* Flatten corners on components, but keep buttons rounded */
+.page-shell {
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-full: 0;
+}
+
+.page-shell button,
+.page-shell a[class*="btn"],
+.page-shell [class*="btn-"],
+.page-shell [class*="button"],
+.page-shell [class*="menu-item"] {
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+
+

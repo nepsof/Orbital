@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;overflow:hidden;background:transparent;user-select:none;-webkit-user-select:none}
+#overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);display:flex;flex-direction:column;align-items:center;padding-top:18vh}
+#panel{width:620px;max-height:460px;background:rgba(250,250,252,0.96);-webkit-backdrop-filter:blur(30px) saturate(1.4);backdrop-filter:blur(30px) saturate(1.4);border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,0.35),0 0 0 1px rgba(255,255,255,0.15);overflow:hidden;display:flex;flex-direction:column;animation:fadeSlide 0.15s ease-out}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-12px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+#search-row{display:flex;align-items:center;padding:14px 18px;border-bottom:1px solid rgba(0,0,0,0.06);gap:10px}
+#search-icon{width:20px;height:20px;color:#8e8e93;flex-shrink:0}
+#search-input{flex:1;border:none;outline:none;font-size:17px;background:transparent;color:#1d1d1f;line-height:1.4}
+#search-input::placeholder{color:#8e8e93}
+#search-input::-webkit-search-cancel-button{display:none}
+#results{flex:1;overflow-y:auto;max-height:380px;padding:6px 0}
+#results::-webkit-scrollbar{width:6px}
+#results::-webkit-scrollbar-track{background:transparent}
+#results::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px}
+#empty{text-align:center;padding:32px 20px;color:#8e8e93;font-size:14px;line-height:1.5}
+.result-item{display:flex;align-items:center;padding:10px 18px;cursor:pointer;gap:12px;transition:background 0.05s;border-left:3px solid transparent}
+.result-item.selected,.result-item:hover{background:rgba(99,102,241,0.1);border-left-color:#6366f1}
+.result-icon{width:28px;height:28px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(0,0,0,0.04)}
+.result-icon img{width:28px;height:28px;object-fit:contain;border-radius:4px}
+.result-icon .fallback{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;text-transform:uppercase}
+.result-info{flex:1;min-width:0}
+.result-name{font-size:13px;font-weight:500;color:#1d1d1f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.result-path{font-size:11px;color:#8e8e93;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.result-action{width:24px;height:24px;border:none;border-radius:4px;background:transparent;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;color:#8e8e93;flex-shrink:0;opacity:0;transition:opacity 0.1s}
+.result-item:hover .result-action{opacity:1}
+.result-action:hover{background:rgba(0,0,0,0.06);color:#1d1d1f}
+#status-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;border-top:1px solid rgba(0,0,0,0.06);font-size:11px;color:#8e8e93}
+#status-bar kbd{background:rgba(0,0,0,0.06);border-radius:3px;padding:1px 5px;font-family:inherit;font-size:10px}
+#status-bar kbd+b{display:none}
+</style>
+</head>
+<body>
+<div id="overlay" onclick="if(event.target===this)hide()">
+<div id="panel" onclick="event.stopPropagation()">
+  <div id="search-row">
+    <svg id="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="search-input" type="search" placeholder="Search files, apps, folders..." spellcheck="false" autocomplete="off" autofocus />
+  </div>
+  <div id="results"></div>
+  <div id="status-bar">
+    <span><kbd>↑↓</kbd> navigate · <kbd>↵</kbd> open · <kbd>esc</kbd> close</span>
+    <span id="status-text"></span>
+  </div>
+</div>
+</div>
+
+<script>
+let API = 'http://localhost:2831';
+let currentResults = [];
+let selectedIndex = -1;
+let isLoading = false;
+
+const input = document.getElementById('search-input');
+const resultsDiv = document.getElementById('results');
+const statusText = document.getElementById('status-text');
+
+// Get API base from Electron
+if (window.orbital) {
+  window.orbital.getApiBase().then(b => { API = b; });
+}
+
+function btoaUTF8(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, function(m) {
+    if (m === '&') return '&amp;'; if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;'; if (m === '"') return '&quot;';
+    return '&#39;';
+  });
+}
+
+// Color mapping for fallback icons
+const FILE_COLORS = {
+  pdf:'#e74c3c',doc:'#2980b9',docx:'#2980b9',xls:'#27ae60',xlsx:'#27ae60',
+  ppt:'#e67e22',pptx:'#e67e22',txt:'#7f8c8d',md:'#7f8c8d',
+  jpg:'#2ecc71',jpeg:'#2ecc71',png:'#2ecc71',gif:'#2ecc71',svg:'#2ecc71',
+  mp3:'#9b59b6',wav:'#9b59b6',flac:'#9b59b6',
+  mp4:'#e67e22',mov:'#e67e22',avi:'#e67e22',mkv:'#e67e22',
+  zip:'#f39c12',rar:'#f39c12',7z:'#f39c12',
+  js:'#f1c40f',ts:'#3498db',jsx:'#f1c40f',tsx:'#3498db',
+  py:'#2ecc71',rb:'#e74c3c',go:'#3498db',rs:'#e67e22',
+  java:'#e74c3c',cpp:'#3498db',c:'#3498db',
+  html:'#e74c3c',css:'#3498db',json:'#7f8c8d',
+  exe:'#6366f1',app:'#6366f1',dmg:'#6366f1',
+  folder:'#3498db',
+};
+
+function getFallbackColor(path) {
+  const parts = path.split('.');
+  const ext = parts.length > 1 ? parts[parts.length - 1].toLowerCase() : '';
+  if (FILE_COLORS[ext]) return FILE_COLORS[ext];
+  if (ext === '' || ext === path.replace(/.*\//, '')) return '#3498db';
+  return '#95a5a6';
+}
+
+function getFallbackLabel(path) {
+  const parts = path.split('.');
+  const ext = parts.length > 1 ? parts[parts.length - 1].toLowerCase() : '';
+  if (ext === 'folder' || ext === '') return 'FO';
+  return ext.slice(0, 2).toUpperCase() || 'FI';
+}
+
+function renderIcon(path) {
+  const color = getFallbackColor(path);
+  const label = getFallbackLabel(path);
+  const iconUrl = `${API}/api/search/icon-local?file=${btoaUTF8(path)}`;
+  return `<div class="result-icon"><img src="${iconUrl}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="fallback" style="background:${color};display:none">${label}</div></div>`;
+}
+
+function renderResults(results) {
+  if (!results || results.length === 0) {
+    resultsDiv.innerHTML = '<div id="empty">Type to search your files and applications</div>';
+    statusText.textContent = '';
+    return;
+  }
+
+  resultsDiv.innerHTML = results.map((r, i) => `
+    <div class="result-item ${i === selectedIndex ? 'selected' : ''}" data-index="${i}">
+      ${renderIcon(r.path)}
+      <div class="result-info">
+        <div class="result-name">${escapeHtml(r.name)}</div>
+        <div class="result-path">${escapeHtml(r.path)}</div>
+      </div>
+      <button class="result-action" onclick="event.stopPropagation();showInFolder(currentResults[${i}])" title="Show in folder">⌘</button>
+    </div>
+  `).join('');
+
+  statusText.textContent = `${results.length} result${results.length !== 1 ? 's' : ''}`;
+}
+
+function onSearch(query) {
+  selectedIndex = -1;
+  if (!query.trim()) {
+    currentResults = [];
+    renderResults([]);
+    return;
+  }
+
+  isLoading = true;
+  statusText.textContent = 'Searching...';
+
+  fetch(`${API}/api/search/local`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: query.trim(), limit: 15 }),
+  })
+  .then(r => {
+    if (!r.ok) throw new Error('Search failed');
+    return r.json();
+  })
+  .then(json => {
+    isLoading = false;
+    if (json.success && Array.isArray(json.data)) {
+      currentResults = json.data;
+      renderResults(currentResults);
+    } else {
+      currentResults = [];
+      renderResults([]);
+    }
+  })
+  .catch(err => {
+    isLoading = false;
+    resultsDiv.innerHTML = '<div id="empty">Search unavailable. Make sure the server is running.</div>';
+    statusText.textContent = 'Error';
+    console.error('Search error:', err);
+  });
+}
+
+function openResult(r) {
+  if (!r) return;
+  if (window.orbital) {
+    window.orbital.openFile(r.path);
+  } else {
+    fetch(`${API}/api/search/open`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: r.path }),
+    }).catch(() => {});
+  }
+  hide();
+}
+
+function showInFolder(r) {
+  if (!r) return;
+  if (window.orbital) {
+    window.orbital.showInFolder(r.path);
+  }
+}
+
+function moveSel(dir) {
+  if (!currentResults.length) return;
+  selectedIndex = Math.max(0, Math.min(currentResults.length - 1, (selectedIndex < 0 ? (dir > 0 ? 0 : currentResults.length - 1) : selectedIndex + dir)));
+  renderResults(currentResults);
+  const sel = document.querySelector('.result-item.selected');
+  if (sel) sel.scrollIntoView({ block: 'nearest' });
+}
+
+function hide() {
+  if (window.orbital) {
+    window.orbital.hideOverlay();
+  }
+}
+
+// Event listeners
+input.addEventListener('input', () => onSearch(input.value));
+
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { e.preventDefault(); hide(); }
+  if (e.key === 'ArrowDown') { e.preventDefault(); moveSel(1); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); moveSel(-1); }
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    if (selectedIndex >= 0 && currentResults[selectedIndex]) {
+      openResult(currentResults[selectedIndex]);
+    } else if (input.value.trim()) {
+      onSearch(input.value);
+    }
+  }
+});
+
+// Click handlers for result items (delegated)
+resultsDiv.addEventListener('click', (e) => {
+  const item = e.target.closest('.result-item');
+  if (item) {
+    const idx = parseInt(item.dataset.index);
+    if (!isNaN(idx) && currentResults[idx]) {
+      openResult(currentResults[idx]);
+    }
+  }
+});
+
+resultsDiv.addEventListener('mouseover', (e) => {
+  const item = e.target.closest('.result-item');
+  if (item) {
+    const idx = parseInt(item.dataset.index);
+    if (!isNaN(idx) && idx !== selectedIndex) {
+      selectedIndex = idx;
+      renderResults(currentResults);
+    }
+  }
+});
+
+// Focus search when overlay is shown
+if (window.orbital) {
+  window.orbital.onFocusSearch(() => {
+    setTimeout(() => input.focus(), 50);
+  });
+}
+
+// Focus input on load
+document.addEventListener('DOMContentLoaded', () => input.focus());
+input.focus();
+</script>
+</body>
+</html>

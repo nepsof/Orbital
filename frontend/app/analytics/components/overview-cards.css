@@ -1,0 +1,82 @@
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-primary-muted);
+  color: var(--brand-primary);
+}
+
+.trendBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-semibold);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.trendUp {
+  background: var(--brand-success-muted);
+  color: var(--brand-success);
+}
+
+.trendDown {
+  background: var(--brand-danger-muted);
+  color: var(--brand-danger);
+}
+
+.statBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.statValue {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-top: var(--spacing-1);
+}
+
+.statFooter {
+  font-size: var(--text-2xs);
+  color: var(--text-tertiary);
+  margin-top: var(--spacing-1);
+}
+
+/* Background accents for specific cards */
+.cardStorage .iconWrapper { background: var(--brand-purple-muted); color: var(--brand-purple); }
+.cardSaved .iconWrapper { background: var(--brand-secondary-muted); color: var(--brand-secondary); }
+.cardDuplicates .iconWrapper { background: var(--brand-danger-muted); color: var(--brand-danger); }
+.cardSearch .iconWrapper { background: var(--brand-accent-muted); color: var(--brand-accent); }
+.cardFolders .iconWrapper { background: var(--brand-pink-muted); color: var(--brand-pink); }

@@ -1,0 +1,113 @@
+.spotlight-panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background-color: var(--bg-surface);
+}
+
+.spotlight-mock-input {
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.search-icon {
+  font-size: var(--text-lg);
+}
+
+.k-hint {
+  margin-left: auto;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.spotlight-results {
+  padding: var(--spacing-4);
+}
+
+.results-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-2xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-2);
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.result-item:hover {
+  background-color: var(--bg-subtle);
+}
+
+.result-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+}
+
+.result-icon.app { background: var(--brand-primary-muted); color: var(--brand-primary); }
+.result-icon.file { background: var(--brand-secondary-muted); color: var(--brand-secondary); }
+.result-icon.web { background: var(--brand-purple-muted); color: var(--brand-purple); }
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.result-sub {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
+
+.spotlight-footer {
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-2xs);
+  color: var(--text-tertiary);
+  text-align: right;
+}
+
+.spotlight-footer kbd {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 1px 4px;
+}
